@@ -1,0 +1,105 @@
+{
+    "user": {
+        "name": ""
+    },
+    "game": {
+        "level": 3,
+        "resume": {
+        	"status": null,
+        	"info": {
+		        "grid_size": null,
+		        "level": null,
+		        "pieceslistmap": null
+        	}
+	    }
+    },
+    "app": {
+    	"theme": null
+    },
+    "themes": {
+        "dark": {
+            "grid_color": [
+                0,
+                0,
+                0
+            ],
+            "background_color": [
+                0,
+                0,
+                0
+            ],
+            "box_color": [
+                0,
+                0,
+                0
+            ],
+            "contour_color": [
+                0,
+                0,
+                0
+            ],
+            "time_color": [
+                0,
+                0,
+                0
+            ],
+            "title_color": [
+                0,
+                0,
+                0
+            ],
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "gamepiece_color": [
+                0,
+                0,
+                0
+            ]
+        },
+        "light": {
+            "grid_color": [
+                0,
+                0,
+                0
+            ],
+            "background_color": [
+                0,
+                0,
+                0
+            ],
+            "box_color": [
+                0,
+                0,
+                0
+            ],
+            "contour_color": [
+                0,
+                0,
+                0
+            ],
+            "time_color": [
+                0,
+                0,
+                0
+            ],
+            "title_color": [
+                0,
+                0,
+                0
+            ],
+            "text_color": [
+                0,
+                0,
+                0
+            ],
+            "gamepiece_color": [
+                0,
+                0,
+                0
+            ]
+        }
+    }
+}

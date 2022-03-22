@@ -1,0 +1,207 @@
+<HomeMenu>:
+	
+
+	MenuLayout:
+		id: homescreen
+		#orientation: 'vertical'
+		#canvas_padding: 40
+		size_hint: .5, .4
+		pos_hint: {'x': .25, 'y': .25}
+		#spacing: self.height * .05
+		
+		MenuButton:
+			to_go: 'sizemenu'
+			text: 'Novo Jogo'
+			
+		MenuButton:
+			to_go: 'sizemenu'
+			text: 'Continuar'
+			
+		MenuButton:
+			to_go: 'settingmenu'
+			text: 'Configurar'
+		
+		MenuButton:
+			to_go: 'ranking'
+			text: 'Ranking'
+
+		MenuButton:
+			to_go: 'sizemenu'
+			text: 'Sair'
+			
+			on_release:
+				app.stop()
+	
+<GridSizeMenu>:
+	MenuLayout:
+		orientation: 'vertical'
+		size_hint: .5, .5
+		pos_hint: {'x': .25, 'y': .25}
+		spacing: self.height * .025
+		
+		Label:
+			text: 'Tamanho da grade'
+			font_size: '20sp'
+			halign: 'center'
+			
+		MenuButton:
+			to_go: 'homemenu'
+			text: '3 X 3'
+			
+		MenuButton:
+			to_go: 'gamescreen'
+			text: '5 X 5'
+		
+		MenuButton:
+			to_go: 'homemenu'
+			text: '7 X 7'
+			
+		MenuButton:
+			to_go: 'homemenu'
+			text: 'Custom'
+
+<SettingsMenu>:
+	RoundedFillBox:
+		reference: settingspanel
+		leakage: 40
+		color: .89,.87,.86,.7
+	RoundedBox:
+		reference: widthsettings
+		leakage: 20
+		line_width: 2
+		color: .89,.87,.86,1
+	RoundedBox:
+		reference: levelsettings
+		leakage: 20
+		line_width: 2
+		color: .89,.87,.86,1
+
+	BoxLayout:
+		id: settingspanel
+		size_hint: .7, .7
+		pos_hint: {'x': .15, 'y': .15}
+		orientation: 'vertical'
+		spacing: self.height * .1
+		
+
+		BoxLayout:
+			id: widthsettings
+			orientation: 'vertical'
+
+			Label:
+				text: 'TAMANHO CUSTOMIZADO'
+				#halign: 'center'
+
+			GridLayout:
+				cols: 2
+				Label:
+					text: 'Altura:'
+						
+				Slider:
+					min:3
+					max: 7
+					value: 3
+					show_off: False
+						
+				Label:
+					text: 'Largura:'
+						
+				Slider:
+					min:3
+					max: 7
+					value: 3
+					show_off: False
+
+		BoxLayout:
+			id: levelsettings
+			orientation: 'vertical'
+
+			Label:
+				text: 'DIFICULDADE'
+	
+			BoxLayout:		
+				Label:
+					text: 'Nível:'
+
+				Slider:
+					min: 1
+					max: 5
+					value: 3
+					show_off: False
+					
+		MenuButton:
+			to_go: 'homemenu'
+			text: 'Home'
+			size_hint_y: .3
+	
+<RankingScreen>:
+	RoundedBox:
+		size_hint: .75, .75
+		pos_hint: {'x': .125, 'y': .125}
+		
+		color: .5,.5,.5,.9
+		radius: 5
+
+		BoxLayout:
+			size_hint: .9, .9
+			pos_hint: {'x': .05, 'y': .05}
+			orientation: 'vertical'
+			padding: self.height*.05
+
+			Label:
+				text: '"Melhores Jogadores"'
+				font_size: '14sp'
+				halign: 'center'
+
+			MenuLayout:
+				#size_hint
+				id: bb
+				Label
+				Label:
+					text: str(bb.chils)
+				Label:
+					text: str(bb.x)
+
+			MenuButton:
+				to_go: 'homemenu'
+				text: 'Home'
+				size_hint_y: .3
+
+<MenuLayout>:
+	orientation: 'vertical'
+	padding: self.height*.1
+	chils: len(self.children)
+	
+	on_pos:
+		self.redraw()
+
+<MenuButton@ButtonBehavior+Label>:
+	to_go: ''
+	pos_hint: {'center_x': .5}
+	font_size: '15sp'
+	font_name: 'playmegames'
+	
+	on_release:
+		current = 'homemenu'
+		app.root.current = self.to_go if self.to_go != '' else current
+		
+<RoundedBox>:
+	canvas:
+		Color:
+			rgba: root.formatColor(root.color)
+
+		Line:
+			width: self.line_width
+			rounded_rectangle: (self.x - self.leakage/2, self.y - self.leakage/2, self.width + self.leakage, self.height + self.leakage, *root.getRadiusRules(self.radius), self.segments)
+
+<RoundedFillBox>:
+	canvas:
+		Clear
+		Color:
+			rgba: root.formatColor(root.color)
+			
+		RoundedRectangle:
+			pos: self.x - self.leakage/2, self.y - self.leakage/2
+			size: self.width + self.leakage, self.height + self.leakage
+			radius: root.getRadiusRules(self.radius)
+			segments: self.segments

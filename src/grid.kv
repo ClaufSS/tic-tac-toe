@@ -1,0 +1,36 @@
+<GameScreen>:
+	Counter:
+		id: tmg
+		pos_hint: {'y': 0.4}
+		markerTarget: 'time_game'
+		
+	Counter:
+		id: tmp
+		pos_hint: {'y': 0.38}
+		markerTarget: 'time_player'
+
+	RoundedFillBox:
+		reference: lay
+		color: .93, .93, .93, 1
+		radius: 10
+		leakage: 25
+
+	BoardLay:
+		id: lay
+		size_hint: 0.8, 0.5
+		pos_hint: {'x': 0.1, 'y': 0.25}
+		thickness: (self.width * 0.14) / self.grid_w
+		x_interval: self.width/self.grid_w
+		y_interval: self.height/self.grid_h
+
+		on_pos:
+			self.update()
+			
+		MenuButton:
+			to_go: "homemenu"
+			text: "Home"
+		
+	Label:
+		id: posi
+		pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+		halign: 'center'
